@@ -1,69 +1,149 @@
 # Student Finance Tracker
 
-A simple app to track your spending as a student. Add expenses, set a spending cap, and search or sort your records.
+## Overview
 
-- **Repo:** https://github.com/jnshuti-cpu/responsive-UI-summative
+Student Finance Tracker is a responsive web app that helps students log their spending, set a spending cap, and search or sort their records. It is built with plain HTML, CSS and JavaScript (ES modules), with no frameworks.
 
-**Author:** Joshua Indoha Nshuti
-**Email:** j.nshuti@alustudent.com
-**GitHub:** https://github.com/jnshuti-cpu
+| | |
+|---|---|
+| **Author** | Joshua Indoha Nshuti |
+| **Email** | j.nshuti@alustudent.com |
+| **GitHub** | [jnshuti-cpu](https://github.com/jnshuti-cpu) |
+| **Repository** | https://github.com/jnshuti-cpu/responsive-UI-summative |
+| **Live site** | https://jnshuti-cpu.github.io/responsive-UI-summative/ |
+| **Demo video** | PASTE-LINK-HERE |
 
-## What you can do
+**Theme:** Student Finance Tracker
 
-- Add, edit and delete expenses
-- See your total spent, top category and a 7-day chart on the dashboard
-- Set a spending cap and get a message when you go over it
-- Sort by date, description or amount
-- Search with regex patterns (matches are highlighted)
-- Switch display currency (USD, EUR, RWF) using rates you set yourself
-- Export your data to JSON and import it back
-- Your data saves automatically in your browser
+---
 
-## How to run it
+## Setup Guide
 
-1. Download or clone the repo.
-2. In the project folder, run: `python3 -m http.server 8000`
+**Requirements:** a modern browser and Python 3 (any local web server works).
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/jnshuti-cpu/responsive-UI-summative.git
+   cd responsive-UI-summative
+   ```
+2. Start a local server (ES modules do not work when opening the file directly):
+   ```bash
+   python3 -m http.server 8000
+   ```
 3. Open http://localhost:8000 in your browser.
 
-To run the tests, open http://localhost:8000/tests.html. Each check shows PASS or FAIL.
+On the first visit, the app loads sample data from `seed.json`. To reset, clear the site's localStorage or import a JSON file from Settings.
 
-## Input rules (regex)
+### Project structure
 
-| Field | Pattern | Good example | Bad example |
+```
+index.html          Main page (About, Dashboard, Records, Form, Settings)
+tests.html          Browser tests
+seed.json           12 sample records
+styles/main.css     Mobile-first styles
+scripts/
+  storage.js        localStorage save/load
+  state.js          Records and stats logic
+  validators.js     Regex validation rules
+  search.js         Safe regex compiler and highlighting
+  ui.js             DOM rendering and events
+```
+
+---
+
+## Features
+
+- **Records:** add, edit and delete expenses (delete asks for confirmation)
+- **Dashboard:** total records, total spent, top category and a 7-day trend chart
+- **Spending cap:** live message that is polite when you are under the cap and assertive when you go over
+- **Sorting:** by date, description (A-Z, Z-A) or amount (low-high, high-low)
+- **Regex search:** type a pattern, toggle case sensitivity, and see matches highlighted with `<mark>`; invalid patterns are caught and reported
+- **Validation:** 5 regex rules with clear error messages
+- **Settings:** spending cap, display currency (USD, EUR, RWF) with manual rates, and editable categories
+- **Persistence:** all changes save automatically to localStorage
+- **Import / Export:** export to JSON and import it back, with structure validation before loading
+- **Responsive:** mobile-first layout with breakpoints at ~360px, 768px and 1024px
+
+### Data model
+
+```json
+{
+  "id": "rec_0001",
+  "description": "Lunch at cafeteria",
+  "amount": 12.5,
+  "category": "Food",
+  "date": "2025-09-25",
+  "createdAt": "2025-10-01T00:00:00.000Z",
+  "updatedAt": "2025-10-01T00:00:00.000Z"
+}
+```
+
+---
+
+## Regex Catalog
+
+### Validation rules
+
+| Field | Pattern | Valid example | Invalid example |
 |---|---|---|---|
-| Description | `^\S(?:.*\S)?$` | `Lunch` | ` Lunch` |
-| Amount | `^(0\|[1-9]\d*)(\.\d{1,2})?$` | `12.50` | `012` |
-| Date | `^\d{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[12]\d\|3[01])$` | `2025-09-29` | `2025-13-01` |
+| Description (no leading/trailing spaces) | `^\S(?:.*\S)?$` | `Lunch` | ` Lunch` |
+| Description (no double spaces) | `\s{2,}` (rejected if it matches) | `Bus pass` | `Bus  pass` |
+| Amount | `^(0\|[1-9]\d*)(\.\d{1,2})?$` | `12.50`, `0` | `012`, `1.234` |
+| Date (YYYY-MM-DD) | `^\d{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[12]\d\|3[01])$` | `2025-09-29` | `2025-13-01` |
 | Category | `^[A-Za-z]+(?:[ -][A-Za-z]+)*$` | `Fast-food` | `Food1` |
-| Duplicate word (back-reference) | `\b(\w+)\s+\1\b` | flags `the the` | `the cat` |
+| **Advanced:** duplicate word (back-reference) | `\b(\w+)\s+\1\b` | flags `the the` | `the cat` |
 
-**Try these in the search box:**
-- `\.\d{2}\b` finds amounts with cents
-- `(coffee|tea)` finds drinks
-- `\b(\w+)\s+\1\b` finds repeated words
+### Search examples
 
-## Keyboard shortcuts
+Try these in the search box on the Records section:
 
-| Key | What it does |
+| Pattern | Finds |
 |---|---|
-| Tab / Shift+Tab | Move between buttons and fields |
-| Enter / Space | Press a button or link |
-| Arrow keys | Change the sort option |
-| First Tab press | "Skip to content" link |
+| `\.\d{2}\b` | Amounts with cents |
+| `(coffee\|tea)` | Drink-related records |
+| `\b(\w+)\s+\1\b` | Repeated words in a description |
 
-## Accessibility
+---
 
-- Clear page sections and headings
-- Every field has a label, and errors are announced to screen readers
-- Visible focus outline on everything you can tab to
-- Cap message is polite when you are under and urgent when you are over
-- Animations turn off if your device asks for reduced motion
-- Works on phone, tablet and desktop
+## Keyboard Map
 
-## Files
+| Key | Action |
+|---|---|
+| `Tab` / `Shift + Tab` | Move forward / backward between controls |
+| `Enter` / `Space` | Activate a button or link |
+| `Enter` (in the form) | Submit the form |
+| `↑` / `↓` | Change the selected sort option |
+| First `Tab` on the page | Reveals the "Skip to content" link |
 
-```
-index.html   tests.html   seed.json
-styles/main.css
-scripts/storage.js  state.js  ui.js  validators.js  search.js
-```
+The whole app can be used with the keyboard alone. When you click Edit, focus moves to the form.
+
+---
+
+## Accessibility Notes
+
+- **Landmarks and headings:** `header`, `nav`, `main`, `section` and `footer`, with a logical heading order
+- **Skip link:** jumps straight to the main content
+- **Forms:** every input has a bound `<label>`, and errors are linked with `aria-describedby`
+- **Focus:** a visible focus outline on all interactive elements
+- **Live regions:** status messages use `role="status"`; the cap message switches between `aria-live="polite"` and `"assertive"`
+- **Tables:** proper `<th scope="col">` headers and a caption
+- **Motion:** transitions are subtle and turn off with `prefers-reduced-motion`
+- **Responsive:** works on phone, tablet and desktop
+
+---
+
+## Testing
+
+1. Start the local server (see Setup Guide).
+2. Open http://localhost:8000/tests.html.
+3. Each check shows **PASS** or **FAIL**.
+
+The tests cover:
+
+- Each validation regex (valid and invalid inputs)
+- The duplicate-word back-reference rule
+- The safe regex compiler (an invalid pattern returns `null` instead of crashing)
+- Match highlighting
+- Collection of multiple validation errors
+
+**Manual checks:** try the app with the keyboard only, test search with edge patterns such as `(` or `.*`, and export then re-import your data.
