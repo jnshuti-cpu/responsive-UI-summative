@@ -1,0 +1,110 @@
+[
+    {
+        "id": "rec_0001",
+        "description": "Lunch at cafeteria",
+        "amount": 12.5,
+        "category": "Food",
+        "date": "2025-09-25",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"   
+    },
+    {
+        "id": "rec_0002",
+        "description": "Chemistry textbook",
+        "amount": 89.99,
+        "category": "Books",
+        "date": "2025-09-23",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"   
+    },
+    {
+        "id": "rec_003",
+        "description": "bus pass",
+        "amount": 45,
+        "category": "Transport",
+        "date": "2025-09-20",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"   
+    },
+    {
+       "id":"rec_0004",
+         "description":"Coffee with friends",
+        "amount": 8.75,
+        "category": "Entertainment",
+        "date": "2025-09-28",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"    
+    },
+    {
+        "id":"rec_0005",
+        "description":"Tea",
+        "amount": 0.5,
+        "category": "Food",
+        "date": "2024-02-29",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"    
+    },
+    {
+        "id":"rec_0006",
+        "description":"Tuition late fee",
+        "amount": 1250.99,
+        "category": "Fees",
+        "date": "2025-01-01",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"    
+    },
+    {
+        "id":"rec_0007",
+        "description":"Notebook and pens",
+        "amount": 3,
+        "category": "Other",
+        "date": "2025-12-31",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"    
+    },
+    {
+        "id":"rec_0008",
+        "description":"movie night",
+        "amount": 15,
+        "category": "Entertainment",
+        "date": "2025-08-29",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"    
+    },
+    {
+        "id":"rec_0009",
+        "description": "study-group snacks",
+        "amount": 22.4,
+        "category": "Food",
+        "date": "2025-09-30",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"
+    },
+    {
+        "id":"rec_0010",
+        "description": "Taxi home",
+        "amount": 0,
+        "category": "Transport",
+        "date": "2025-03-15",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"
+    },
+    {
+        "id":"rec_0011",
+        "description":"library fine",
+        "amount": 5.05,
+        "category": "Fees",
+        "date": "2025-06-10",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"
+    },
+    {
+        "id":"rec_0012",
+        "description":"used calculator",
+        "amount": 19,
+        "category": "books",
+        "date": "2025-07-04",
+        "createdAt": "2025-10-01T00:00:00.000Z",
+        "updatedAt": "2025-10-01T00:00:00.000Z"
+    }
+]

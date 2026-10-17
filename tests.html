@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Tests</title></head><body>
+<h1>Validator tests</h1><ul id="out"></ul>
+<script type="module">
+import { RULES, validate } from './scripts/validators.js';
+import { compileRegex, highlight } from './scripts/search.js';
+const out = document.getElementById('out');
+const t = (n, ok) => { const li = document.createElement('li'); li.textContent = (ok ? 'PASS ' : 'FAIL ') + n; out.append(li); };
+t('description trims', RULES.description.test('Lunch') && !RULES.description.test(' Lunch'));
+t('amount ok', RULES.amount.test('12.50') && RULES.amount.test('0') && !RULES.amount.test('012') && !RULES.amount.test('1.234'));
+t('date ok', RULES.date.test('2025-09-29') && !RULES.date.test('2025-13-01'));
+t('category ok', RULES.category.test('Fast-food items') && !RULES.category.test('Food1'));  
+t('duplicate word', RULES.dupWord.test('the the cat') && !RULES.dupWord.test('the cat'));
+t('bad regex returns null', compileRegex('(') === null);
+t('highlight', highlight('coffee', /off/i) === 'c<mark>off</mark>ee');
+t('validate collects errors', Object.keys(validate({ description: ' x', amount: 'a', date: 'b', category: '1' })).length === 4);
+</script></body></html></html>
