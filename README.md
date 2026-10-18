@@ -11,7 +11,7 @@ Student Finance Tracker is a responsive web app that helps students log their sp
 | **GitHub** | [jnshuti-cpu](https://github.com/jnshuti-cpu) |
 | **Repository** | https://github.com/jnshuti-cpu/responsive-UI-summative |
 | **Live site** | https://jnshuti-cpu.github.io/responsive-UI-summative/ |
-| **Demo video** | PASTE-LINK-HERE |
+| **Demo video** | https://www.loom.com/share/ac5904e09b7645678d2a28ccd3592879 |
 
 **Theme:** Student Finance Tracker
 
